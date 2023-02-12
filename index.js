@@ -52,67 +52,79 @@ function createHTML(data) {
 // inquirer prompt
 inquirer
 
-// prompt user for questions
-.prompt(questions)
+  // prompt user for questions
+  .prompt(questions)
 
 // then take answers and do this callback
-.then((answers) => {
+  .then((answers) => {
+    const hexRegStart = /^#/
 
-  // check if answers is less then or equal to 3 and not 0
-  if((answers.text.length <= 3 && answers.text.length !== 0)){
+    // check if answers is less then or equal to 3 and not 0
+    if((answers.text.length <= 3 && answers.text.length !== 0)){
 
-    // check if colors match the Regex
-    if(
-      (hexRegex.test(answers.textColor) ||
-      svgColorKeywordRegex.test(answers.textColor.toLowerCase())) && 
-      (hexRegex.test(answers.shapeColor) ||
-      svgColorKeywordRegex.test(answers.shapeColor.toLowerCase()))
-    ){
-      // add # to regex colors
-      if(hexRegex.test(answers.textColor) && !answers.textColor.toMatch(/^#/)) {
-        answers.textColor = `#${answers.textColor}`
+      // check if textColor starts with #
+      if (hexRegStart.test(answers.textColor)) {
+        // set textColor to sliced string without #
+        answers.textColor = answers.textColor.slice(1)
       }
-      // add # to regex colors
-      if(hexRegex.test(answers.shapeColor) && !answers.shapeColor.toMatch(/^#/)) {
-        answers.shapeColor = `#${answers.shapeColor}`
+      // check if shapeColor starts with #
+      if (hexRegStart.test(answers.shapeColor)) {
+        // set shapeColor to sliced string without #
+        answers.shapeColor = answers.shapeColor.slice(1)
       }
-      
-      // define newSVG so that it can be re-assigned to a new class obj
-      let newSVG
-      if(answers.shape === 'Square'){
-        newSVG = new Square()
-      }
-      if(answers.shape === 'Triangle'){
-        newSVG = new Triangle()
-      }
-      if(answers.shape === 'Circle'){
-        newSVG = new Circle()
-      }
-      if(answers.shape === 'Rectangle'){
-        newSVG = new Rectangle()
-      }
+      // check if colors match the Regex
+      if(
+        (hexRegex.test(answers.textColor) ||
+        svgColorKeywordRegex.test(answers.textColor.toLowerCase())) && 
+        (hexRegex.test(answers.shapeColor) ||
+        svgColorKeywordRegex.test(answers.shapeColor.toLowerCase()))
+      ){
+        
+        // add # to regex colors
+        if(hexRegex.test(answers.textColor) &&! hexRegStart.test(answers.textColor)) {
+          answers.textColor = `#${answers.textColor}`
+        }
+        // add # to regex colors
+        if(hexRegex.test(answers.shapeColor) &&! hexRegStart.test(answers.shapeColor)) {
+          answers.shapeColor = `#${answers.shapeColor}`
+        }
+        
+        // define newSVG so that it can be re-assigned to a new class obj
+        let newSVG
+        if(answers.shape === 'Square'){
+          newSVG = new Square()
+        }
+        if(answers.shape === 'Triangle'){
+          newSVG = new Triangle()
+        }
+        if(answers.shape === 'Circle'){
+          newSVG = new Circle()
+        }
+        if(answers.shape === 'Rectangle'){
+          newSVG = new Rectangle()
+        }
 
-      const shape = new Shape()
-      const renderSVGReturn = shape.render(
-        answers.text,
-        answers.textColor.toLowerCase(),
-        newSVG.shapePath,
-        answers.shapeColor.toLowerCase()
-      )
-      const html = new Html()
-      const renderHTMLReturn = html.render(renderSVGReturn)
-      // console.log(renderReturn);
-      createSVG(renderSVGReturn);
-      createHTML(renderHTMLReturn);
-      // console.log(answers);
+        const shape = new Shape()
+        const renderSVGReturn = shape.render(
+          answers.text,
+          answers.textColor.toLowerCase(),
+          newSVG.shapePath,
+          answers.shapeColor.toLowerCase()
+        )
+        const html = new Html()
+        const renderHTMLReturn = html.render(renderSVGReturn)
+        // console.log(renderReturn);
+        createSVG(renderSVGReturn);
+        createHTML(renderHTMLReturn);
+        // console.log(answers);
+      }else{
+        console.error('Please Enter at a valid hex code or color keyword.');
+      }
     }else{
-      console.error('Please Enter at a valid hex code or color keyword.');
+      console.error('Please Enter at least 1 character and no more than 3 characters.');
     }
-  }else{
-    console.error('Please Enter at least 1 character and no more than 3 characters.');
-  }
-})
-.catch((e) => console.error(e))
+  })
+  .catch((e) => console.error(e))
 
 // export? not sure if needed, I was trying to do a test on the inquirer prompts and I was using it for that
 module.exports = (questions) => {
