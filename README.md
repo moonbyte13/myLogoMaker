@@ -30,9 +30,9 @@ I enjoyed messing around with the path drawings.
 ## User Story 📘
 
 ```md
-AS A developer
-I WANT a README generator
-SO THAT I can quickly create a professional README for a new project
+AS a freelance web developer
+I WANT to generate a simple logo for my projects
+SO THAT I don't have to pay a graphic designer
 ```
 <br>
 <a id="aC"></a>
@@ -41,20 +41,19 @@ SO THAT I can quickly create a professional README for a new project
 
 ```md
 GIVEN a command-line application that accepts user input
-WHEN I am prompted for information about my application repository
-THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
-WHEN I enter my project title
-THEN this is displayed as the title of the README
-WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
-THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-WHEN I choose a license for my application from a list of options
-THEN a badge for that license is added near the top of the README and a notice is added to the section of the README entitled License that explains which license the application is covered under
-WHEN I enter my GitHub username
-THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-WHEN I enter my email address
-THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-WHEN I click on the links in the Table of Contents
-THEN I am taken to the corresponding section of the README
+WHEN I am prompted for text
+THEN I can enter up to three characters
+WHEN I am prompted for the text color
+THEN I can enter a color keyword (OR a hexadecimal number)
+WHEN I am prompted for a shape
+THEN I am presented with a list of shapes to choose from: circle, triangle, and square
+WHEN I am prompted for the shape's color
+THEN I can enter a color keyword (OR a hexadecimal number)
+WHEN I have entered input for all the prompts
+THEN an SVG file is created named `logo.svg`
+AND the output text "Generated logo.svg" is printed in the command line
+WHEN I open the `logo.svg` file in a browser
+THEN I am shown a 300x200 pixel image that matches the criteria I entered
 ```
 <br>
 <a id="tests"></a>
