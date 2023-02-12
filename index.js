@@ -85,7 +85,6 @@ inquirer
       // console.log(renderReturn);
       createSVG(renderReturn)
       // console.log(answers);
-      module.exports = answers
     }else{
       console.error('Please Enter at a valid hex code or color keyword.');
     }
@@ -96,3 +95,6 @@ inquirer
 .catch((e) => console.error(e))
 
 
+module.exports = (questions) => {
+  return inquirer.prompt(questions)
+}
