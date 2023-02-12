@@ -61,7 +61,6 @@ inquirer
       }
       
       let newSVG
-      let shapes = ['Square', 'Triangle', 'Circle', 'Rectangle']
 
       if(answers.shape === 'Square'){
         newSVG = new Square()
@@ -84,8 +83,9 @@ inquirer
         answers.shapeColor.toLowerCase()
       )
       // console.log(renderReturn);
-      module.exports = renderReturn
       createSVG(renderReturn)
+      // console.log(answers);
+      module.exports = answers
     }else{
       console.error('Please Enter at a valid hex code or color keyword.');
     }
