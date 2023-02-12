@@ -88,8 +88,8 @@ I also did a test for the Shape class
 ## FAQ ❓
 
 * What is the Repo link?
-  * [Repo](https://github.com/XMoonphaseX/myLogoMaker)
+  * <a href='https://github.com/XMoonphaseX/myLogoMaker' target='_blank'>***Repo***</a>
 * What is the link to the Demo Video?
-  * [Demo](https://drive.google.com/file/d/1LDUhU0CAOBRHgzzvAyeothk-pb3H5U2y/view)
+  * <a href='https://drive.google.com/file/d/1LDUhU0CAOBRHgzzvAyeothk-pb3H5U2y/view' target='_blank'>***Demo***</a>
 * What is your Github link?
-  * [Github](https://github.com/xMoonphasex)  
+  * <a href='https://github.com/xMoonphasex' target='_blank'>***Github***</a>
